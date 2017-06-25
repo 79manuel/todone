@@ -1,47 +1,63 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
 <html lang="en">
    <head>
     <meta charset="utf-8">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="styles/layout.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <%include ./partials/_header.ejs%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/scripts/effects.js"></script>
+    <script type="text/javascript" src="../scripts/test.js"></script>
+    <script type="text/javascript" src="../scripts/app.js"></script>
   </head>
-  <script type="text/javascript" src="../scripts/test.js"></script>
-  <script type="text/javascript" src="../scripts/app.js"></script>
-  <script>
-    <% console.log("ALL",   latest, "ALL TASKS", allTasks); %>
-  </script>
 
+  <body style="padding-top: 70px;">
+    <main style="text-align: -webkit-center;" class="container-fluid">
 
-  <body>
-    <main>
+      <section class="row eat-watch-section">
+        <div id="origin" class="col-md-4 eat ui-widget-content">
+          <a href="/allEats">Eat</a>
+          <br>
+          <ul>
 
-      <section class="eat-watch-section">
-        <div><a href="/allEats">All Your Eat Tasks</a></div>
-        <div style="margin-left:97px";><span class="watchTask">Watch</span></div>
+            <li class="draggable"><%= latest %></li>
+
+          </ul>
+        </div>
+        <div id="drop" class="col-md-4 col-md-offset-4 watch watchTask">Watch</div>
       </section>
 
-      <section class="input-section">
-        <form method="POST" action="/new_task">
-          <input name="task" class="text-for-task" type="text"  placeholder="Enter task" />
+      <form class="form-inline" method="POST" action="/new_task">
+        <div class="form-group">
+          <label for="exampleInputName2">Task</label>
+            <div class="input-group input-group-lg">
+             <input name="taskID" type="text" class="form-control ID-for-task" placeholder="Eat, Watch, Read, Buy">
+            </div>
           <button>SUBMIT</button>
-        </form>
-        <form method="POST" action="/removeTask">
-          <input name="taskID" class="ID-for-task" type="text"  placeholder="Enter task ID to delete" />
-          <button>SUBMIT</button>
-        </form>
-        <form method="POST" action="/reclassifyTask">
+        </div>
+      </form>
+      <form method="POST" action="/removeTask">
+       <input name="taskID" class="ID-for-task" type="text"  placeholder="Enter task ID to delete" />
+       <button>SUBMIT</button>
+               <form method="POST" action="/reclassifyTask">
           <input name="taskID" class="ID-for-task" type="text"  placeholder="Enter task ID to reclassify" />
           <input name="taskNewClass" class="newClass-for-task" type="text"  placeholder="Enter new task class" />
           <button>SUBMIT</button>
         </form>
-      </section>
 
-      <section class="read-buy-section">
-         <div><span>Read</span></div>
-        <div style="margin-left:97px;"><span>Buy</span></div>
+      <section class="row read-buy-section">
+         <div class="col-md-4 read">Read</div>
+        <div class="col-md-4 col-md-offset-4 buy">Buy</div>
       </section>
     </main>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <script>
+      $("#origin").sortable({connectWith: "#drop"});
+      $("#drop").sortable({connectWith: "#origin"});
+    </script>
   </body>
 </html>
+
+
