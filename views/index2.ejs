@@ -11,30 +11,47 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/scripts/effects.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-
+    <%include ./partials/_header.ejs%>
+    <script>
+      $(document).ready(function(){
+        $('.newtask').hide();
+        $('.btn-newtask').on("click", function() {
+          $('.newtask').slideToggle('slow');
+        });
+        $('.removetask').hide();
+        $('.btn-delete').on("click", function() {
+          $('.removetask').slideToggle('slow');
+        });
+        $('.category').hide();
+        $('.btn-category').on("click", function() {
+          $('.category').slideToggle('slow');
+        });
+      });
+  </script>
   </head>
 
   <body style="padding-top: 70px;">
     <main style="text-align: -webkit-center;" class="container-fluid">
+
       <section class="row eat-watch-section">
 
-       <div id="origin" class="col-md-4 ui-widget-content eat">
+       <div class="col-md-4 ui-widget-content eat">
           <% if(allTasks.e[0] === undefined) { %>
         <br>
         <%} else { %>
           <% for(var i = 0; i < Object.keys(latest.e).length; i++) { %>
-          <br><span>Task: <%= latest.e[i].content%> Id: <%= latest.e[i].id %></span>
+          <br><span id="origin">Task: <%= latest.e[i].content%> Id: <%= latest.e[i].id %></span>
           <% } %>
         <% } %>
         <% if(latest.e[0] === undefined) { %>
         <br>Eat
         <% } else { %>
-        <br><span>Your Latest Task is : <%= latest.e[0].content %>
-        <br> Your Latest Id is : <%=latest.e[0].id %></span>
+        <br><!-- <span>Your Latest Task is : <%= latest.e[0].content %>
+        <br> Your Latest Id is : <%=latest.e[0].id %></span> -->
         <% } %>
         </div>
 
-        <div id="drop" class="col-md-4 col-md-offset-4 watch">
+        <div class="col-md-4 col-md-offset-4 watch">
           <br><span> <%= allTasks.w %></span>
         <% if(allTasks.w[0] === undefined) { %>
         <br>
@@ -46,12 +63,19 @@
         <% if(latest.w[0] === undefined) { %>
         <br>Watch
         <% } else { %>
-        <br><span>Latest Task <%= latest.w[0].content %></span>
+        <br><!-- <span>Latest Task <%= latest.w[0].content %></span> -->
         <% } %>
           </div>
       </section>
 
-      <div>
+      <div class="buttons">
+        <button type="button" class="btn btn-primary btn-lg btn-newtask">Add</button>
+        <button type="button" class="btn btn-primary btn-lg btn-delete">Delete</button>
+        <button type="button" class="btn btn-primary btn-lg btn-category">Category</button>
+     </div>
+
+
+      <div class="home-form container-fluid newtask"">
         <form method="POST" action="/new_task">
 
           <div class="form-group">
@@ -68,8 +92,8 @@
         </form>
       </div>
 
-        <div class="container-fluid removetask">
-          <div class="row removetask">
+        <div class="home-form container-fluid removetask">
+
             <form method="POST" action="/removeTask">
 
               <div class="form-group">
@@ -88,8 +112,8 @@
         </div>
 
 
-        <div class="container-fluid category">
-          <div class="row">
+        <div class="home-form container-fluid category">
+
             <form method="POST" action="/reclassifyTask">
 
               <div class="form-group">
@@ -126,7 +150,7 @@
         <% if(latest.r[0] === undefined) { %>
         <br>Read
         <% } else { %>
-        <br><span>Latest Task <%= latest.r[0].content %></span>
+        <br><!-- <span>Latest Task <%= latest.r[0].content %></span> -->
         <% } %>
         </div>
 
@@ -141,12 +165,17 @@
         <% if(latest.b[0] === undefined) { %>
         <br>Buy
         <% } else { %>
-        <br><span>Latest Task <%= latest.b[0].content %></span>
+        <br><!-- <span>Latest Task <%= latest.b[0].content %> --></span>
         <% } %>
         </div>
       </section>
     </main>
+    <%include ./partials/_footer.ejs%>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <script>
+      $("#origin").sortable({connectWith: "#drop"});
+      $("#drop").sortable({connectWith: "#origin"});
     </script>
   </body>
 </html>

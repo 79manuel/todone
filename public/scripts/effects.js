@@ -3,12 +3,12 @@ $(document).ready(function(){
   $( ".eat" ).click(function() {
     if(flagEat===false){
       $( ".eat" ).animate({zoom: '250%'}, "slow");
-      $(".watch, .form-inline, .read-buy-section").hide();
+      $(".watch, .form-inline, .read-buy-section, .buttons").hide();
       flagEat = true;
     }
     else if(flagEat===true){
       $( ".eat" ).animate({zoom: '100%'}, "slow");
-      $(".watch, .form-inline, .read-buy-section").show("slow");
+      $(".watch, .form-inline, .read-buy-section, .buttons").show("slow");
       flagEat = false;
     }
   });
@@ -16,12 +16,12 @@ $(document).ready(function(){
   $( ".watch" ).click(function() {
     if(flagWatch === false) {
     $( ".watch" ).animate({zoom: '250%'}, "slow");
-    $(".eat, .form-inline, .read-buy-section").hide();
+    $(".eat, .form-inline, .read-buy-section, .buttons").hide();
     flagWatch = true;
     }
     else if(flagWatch===true){
       $( ".watch" ).animate({zoom: '100%'}, "slow");
-      $(".eat, .form-inline, .read-buy-section").show("slow");
+      $(".eat, .form-inline, .read-buy-section, .buttons").show("slow");
       flagWatch = false;
     }
   });
@@ -30,12 +30,12 @@ $(document).ready(function(){
   $( ".read" ).click(function() {
     if(flagRead === false) {
     $(".read" ).animate({zoom: '250%'}, "slow");
-    $(".buy, .form-inline, .eat-watch-section").hide();
+    $(".buy, .form-inline, .eat-watch-section, .buttons").hide();
     flagRead = true;
     }
     else if (flagRead === true) {
       $( ".read" ).animate({zoom: '100%'}, "slow");
-      $(".buy, .form-inline, .eat-watch-section").show("slow");
+      $(".buy, .form-inline, .eat-watch-section, .buttons").show("slow");
       flagRead = false;
 
     }
@@ -45,12 +45,12 @@ $(document).ready(function(){
   $(".buy" ).click(function() {
     if (flagBuy === false) {
       $( ".buy" ).animate({zoom: '250%'}, "slow");
-      $(".read, .form-inline, .eat-watch-section").hide();
+      $(".read, .form-inline, .eat-watch-section, .buttons").hide();
       flagBuy = true;
     }
     else if (flagBuy === true){
       $(".buy" ).animate({zoom: '100%'}, "slow");
-      $(".read, .form-inline, .eat-watch-section").show("slow");
+      $(".read, .form-inline, .eat-watch-section, .buttons").show("slow");
       flagBuy = false;
     }
   });
