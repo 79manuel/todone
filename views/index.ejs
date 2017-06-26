@@ -3,10 +3,32 @@
 <html lang="en">
    <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles/layout.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../styles/layout.css">
     <%include ./partials/_header.ejs%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/scripts/effects.js"></script>
   </head>
+
+
+  <body style="padding-top: 70px;">
+    <main style="text-align: -webkit-center;" class="container-fluid">
+
+      <section class="row eat-watch-section">
+        <div id="origin" class="col-md-4 eat ui-widget-content">
+          Eat
+          <br>
+          <ul>
+
+            <li class="draggable"><%= latest %></li>
+
+          </ul>
+        </div>
+        <div id="drop" class="col-md-4 col-md-offset-4 watch">Watch</div>
+
   <script type="text/javascript" src="../scripts/test.js"></script>
   <script>
     <% console.log("ALL",   latest, "ALL TASKS", allTasks); %>
@@ -26,17 +48,31 @@
         <div style="margin-left:97px";><span class="watchTask">Watch</span><br><%= latest.w[0].id%></div>
       </section>
 
-      <section class="input-section">
-        <form method="POST" action="/new_task">
-          <input name="task" class="text-for-task" type="text"  placeholder="Enter task here!!" />
+      <form class="form-inline" method="POST" action="/new_task">
+        <div class="form-group">
+          <label for="exampleInputName2">Task</label>
+            <div class="input-group input-group-lg">
+             <input type="text" class="form-control" placeholder="Eat, Watch, Read, Buy">
+            </div>
           <button>SUBMIT</button>
-        </form>
-      </section>
+        </div>
+      </form>
 
+      <section class="row read-buy-section">
+         <div class="col-md-4 read">Read</div>
+        <div class="col-md-4 col-md-offset-4 buy">Buy</div>
+=======
       <section class="read-buy-section">
          <div><span>Read</span><br><%= latest.r[0].id %></div>
         <div style="margin-left:97px;"><span>Buy</span><br><%= latest.b[0].id%></div>
       </section>
     </main>
+    <%include ./partials/_footer.ejs%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <script>
+      $("#origin").sortable({connectWith: "#drop"});
+      $("#drop").sortable({connectWith: "#origin"});
+    </script>
   </body>
 </html>
