@@ -15,7 +15,7 @@ Each time you input a new task the app learns from the way you classify and if y
 5. Run the server: `npm run local`
 6. Visit `http://localhost:8080/`
 
-## Dependencies
+## Dependencies 
 
 - Node 5.10.x or above
 - NPM 3.8.x or above
