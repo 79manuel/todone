@@ -8,7 +8,7 @@ Each time you input a new task the app learns from the way you classify and if y
 
 ## Getting Started
 
-1. Fork repository 
+1. Fork repository  
 2. Install dependencies: `npm i`
 3. Run migrations: `npm run knex migrate:latest`
 4. Run the seed: `npm run knex seed:run`
