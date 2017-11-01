@@ -6,7 +6,7 @@ Todone is a streamlined, easy-to-use to do app that uses the Naive Bayes classif
 You can create a profile and submit, edit, delete, and re-categorize task. 
 Each time you input a new task the app learns from the way you classify and if you need to re-classify it will remember your change for next time. 
 
-## Getting Started
+## Getting Started  
 
 1. Fork repository  
 2. Install dependencies: `npm i`
